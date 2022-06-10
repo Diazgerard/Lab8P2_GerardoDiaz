@@ -5,6 +5,11 @@
  */
 package lab8p2_gerardodiaz;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JColorChooser;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gerar
@@ -30,6 +35,7 @@ public class MainLab8 extends javax.swing.JFrame {
         BT_Alimento = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -68,7 +74,6 @@ public class MainLab8 extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jb_crearZONA = new javax.swing.JButton();
         tf_nombreITEM = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,80 +90,125 @@ public class MainLab8 extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Mascota", jPanel1);
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1015, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 554, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Comandos", jPanel3);
+
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Crear Mascota");
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre");
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Puntos de Vida");
 
         try {
-            ff_vida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
+            ff_vida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Delay");
 
-        try {
-            ff_delay.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#######")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        ff_delay.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         ff_delay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ff_delayActionPerformed(evt);
             }
         });
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Costo");
 
+        ff_costo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+
         jb_color.setText("Color");
+        jb_color.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_colorMouseClicked(evt);
+            }
+        });
 
         jb_crearITEM.setText("Crear Item");
+        jb_crearITEM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_crearITEMMouseClicked(evt);
+            }
+        });
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Crear Item");
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Nombre");
 
         BT_Alimento.add(rb_si);
+        rb_si.setForeground(new java.awt.Color(255, 255, 255));
         rb_si.setText("SI");
 
         BT_Alimento.add(rb_no);
+        rb_no.setForeground(new java.awt.Color(255, 255, 255));
         rb_no.setText("NO");
 
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Es Alimento?");
 
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Probabilidad de Obtencion");
 
-        try {
-            ff_probabilidadOBT.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        ff_probabilidadOBT.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         ff_probabilidadOBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ff_probabilidadOBTActionPerformed(evt);
             }
         });
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Precio de Venta");
 
+        ff_Precio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+
+        jb_crearMAS.setText("Crear Mascota");
+        jb_crearMAS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_crearMASMouseClicked(evt);
+            }
+        });
+
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Crear Zona");
+
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Nombre");
+
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Probabilidad de Derrumbe");
+
         try {
-            ff_Precio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+            ff_probDERRUMBE.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        jb_crearMAS.setText("Crear Mascota");
-
-        jLabel11.setText("Crear Zona");
-
-        jLabel12.setText("Nombre");
-
-        jLabel13.setText("Probabilidad de Derrumbe");
-
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Probalidad de Ataque");
 
+        ff_probATA.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Agregar Item");
 
         ta_agregarITEM.setColumns(20);
@@ -171,9 +221,20 @@ public class MainLab8 extends javax.swing.JFrame {
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Items");
 
         jb_crearZONA.setText("Crear Zona");
+        jb_crearZONA.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jb_crearZONAMouseDragged(evt);
+            }
+        });
+        jb_crearZONA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_crearZONAMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -329,19 +390,6 @@ public class MainLab8 extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Administracion", jPanel2);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1015, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 554, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Comandos", jPanel3);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -369,6 +417,126 @@ public class MainLab8 extends javax.swing.JFrame {
     private void ff_probabilidadOBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ff_probabilidadOBTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ff_probabilidadOBTActionPerformed
+
+    private void jb_colorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_colorMouseClicked
+        // TODO add your handling code here:
+        
+        jb_color.setBackground(
+                    JColorChooser.showDialog(this, "Selecione un color", Color.yellow)
+        );
+        
+    }//GEN-LAST:event_jb_colorMouseClicked
+
+    private void jb_crearMASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearMASMouseClicked
+        // TODO add your handling code here:
+        Mascotas mas = new Mascotas();
+        
+        String nombre;
+        int vida, delay, costo;
+        Color colo;
+        
+       nombre = tf_nombreMAS.getText();
+       mas.setNombreMAS(nombre);
+       vida = Integer.parseInt(ff_vida.getText());
+       mas.setVida(vida);
+       delay = Integer.parseInt(ff_delay.getText());
+       mas.setDelay(delay);
+       costo = Integer.parseInt(ff_costo.getText());
+       mas.setCosto(costo);
+       colo = jb_color.getBackground();
+       mas.setColor(colo);
+       
+       Mascotas mascota  = new Mascotas(nombre, vida, delay, costo, colo);
+       mascotas.add(mascota);
+       administrarMascotas ap = new administrarMascotas("./Mascotas.cbm");
+        ap.cargarArchivo();  
+        ap.escribirArchivo();
+        JOptionPane.showMessageDialog(this,
+                "Mascota guardada exitosamente");
+       
+       tf_nombreMAS.setText("");
+       ff_vida.setText("");
+       ff_delay.setText("");
+       ff_costo.setText("");
+       jb_color.setBackground(Color.WHITE);
+       
+       
+       
+    }//GEN-LAST:event_jb_crearMASMouseClicked
+
+    private void jb_crearITEMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearITEMMouseClicked
+        // TODO add your handling code here:
+        Items it = new Items();
+        String nombre, alimento;
+        int prob, precio;
+        
+        nombre = tf_nombreITEM.getText();
+        
+        
+        if(rb_si.isSelected()){
+            alimento = "si";
+            it.setAlimento(alimento);
+        }else{
+            alimento = "no";
+            it.setAlimento(alimento);
+        }
+        
+        if(rb_no.isSelected()){
+            alimento = "no";
+            it.setAlimento(alimento);
+        }else{
+            alimento = "si";
+            it.setAlimento(alimento);
+        }
+        
+        prob = Integer.parseInt(ff_probabilidadOBT.getText());
+        it.setProbOBT(prob);
+        precio = Integer.parseInt(ff_Precio.getText());
+        it.setPrecio(precio);
+        
+        Items its = new Items(nombre, alimento, prob, precio);
+        items.add(its);
+        
+        tf_nombreITEM.setText("");
+        rb_si.setSelected(false);
+        rb_no.setSelected(false);
+        ff_Precio.setText("");
+        ff_probabilidadOBT.setText("");
+        
+        
+    }//GEN-LAST:event_jb_crearITEMMouseClicked
+
+    private void jb_crearZONAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearZONAMouseClicked
+        // TODO add your handling code here:+
+        Zona zone = new Zona();
+        String nombre, renumeracion;
+        int probDER, probMEG;
+        
+        nombre = tf_nombreZONA.getText();
+        zone.setNombre(nombre);
+        renumeracion = tf_nombreZONA.getText();
+        zone.setRenumeracion(renumeracion);
+        probDER = Integer.parseInt(ff_probDERRUMBE.getText());
+        zone.setProbDERRUMBE(probDER);
+        probMEG= Integer.parseInt(ff_probATA.getText());
+        zone.setProbMEGA(probMEG);
+        
+        Zona zona =  new Zona(nombre,renumeracion, probDER, probMEG);
+        
+        
+        tf_nombreZONA.setText("");
+        ff_probDERRUMBE.setText("");
+        ff_probATA.setText("");
+        
+        
+        
+      
+        
+    }//GEN-LAST:event_jb_crearZONAMouseClicked
+
+    private void jb_crearZONAMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearZONAMouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_crearZONAMouseDragged
 
     /**
      * @param args the command line arguments
@@ -449,4 +617,8 @@ public class MainLab8 extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombreMAS;
     private javax.swing.JTextField tf_nombreZONA;
     // End of variables declaration//GEN-END:variables
+   
+    ArrayList mascotas =  new ArrayList();
+    ArrayList items = new ArrayList();
+
 }
