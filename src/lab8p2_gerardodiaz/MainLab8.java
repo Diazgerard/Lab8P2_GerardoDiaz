@@ -61,7 +61,7 @@ public class MainLab8 extends javax.swing.JFrame {
         ff_probATA = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ta_agregarITEM = new javax.swing.JTextArea();
         jb_agregarITEM = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -161,9 +161,9 @@ public class MainLab8 extends javax.swing.JFrame {
 
         jLabel15.setText("Agregar Item");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        ta_agregarITEM.setColumns(20);
+        ta_agregarITEM.setRows(5);
+        jScrollPane1.setViewportView(ta_agregarITEM);
 
         jb_agregarITEM.setText("Agregar Item");
 
@@ -436,7 +436,6 @@ public class MainLab8 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton jb_agregarITEM;
     private javax.swing.JButton jb_color;
@@ -445,6 +444,7 @@ public class MainLab8 extends javax.swing.JFrame {
     private javax.swing.JButton jb_crearZONA;
     private javax.swing.JRadioButton rb_no;
     private javax.swing.JRadioButton rb_si;
+    private javax.swing.JTextArea ta_agregarITEM;
     private javax.swing.JTextField tf_nombreITEM;
     private javax.swing.JTextField tf_nombreMAS;
     private javax.swing.JTextField tf_nombreZONA;
