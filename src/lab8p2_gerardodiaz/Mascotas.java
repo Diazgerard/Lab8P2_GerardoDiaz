@@ -72,7 +72,7 @@ public class Mascotas {
 
     @Override
     public String toString() {
-        return "Mascotas{" + "nombreMAS=" + nombreMAS + ", vida=" + vida + ", delay=" + delay + ", costo=" + costo + ", color=" + color + '}';
+        return nombreMAS  + vida + delay + costo + color ;
     }
     
     

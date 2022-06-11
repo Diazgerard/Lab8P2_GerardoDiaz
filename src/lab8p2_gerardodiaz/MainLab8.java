@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class MainLab8 extends javax.swing.JFrame {
     Items it = new Items();
+    int dinero = 200;
+    int banco = 0;
     /**
      * Creates new form MainLab8
      */
@@ -586,12 +589,14 @@ public class MainLab8 extends javax.swing.JFrame {
             it.setAlimento(nombre);
         }else{
             alimento = "no";
+            it.setAlimento(" ");
             
         }
         
         if(rb_no.isSelected()){
             alimento = "no";
             it.setAlimento(alimento);
+            it.setAlimento(" ");
         }else{
             alimento = "si";
             it.setAlimento(nombre);
@@ -647,7 +652,7 @@ public class MainLab8 extends javax.swing.JFrame {
         personalizado.add(personal);
         
         Zona zona =  new Zona(nombre,renumeracion, probDER, probMEG);
-        
+        zonas.add(zona);
         
         tf_nombreZONA.setText("");
         ff_probDERRUMBE.setText("");
@@ -713,6 +718,59 @@ public class MainLab8 extends javax.swing.JFrame {
                 petlist();
                 tf_valid.setText("");
             }
+            if(validaciones.contains("!pet active")){
+                petactive();
+                tf_valid.setText("");
+            }
+            if(validaciones.contains("!pet feed ")){
+                petfeed();
+                tf_valid.setText("");
+            }
+            if(validaciones.contains("!adopt ")){
+                adopt();
+                tf_valid.setText("");
+            }
+            if(validaciones.contains("!mine ")){
+                mine();
+                tf_valid.setText("");
+            }
+            if(validaciones.contains("!fish ")){
+                fish();
+                tf_valid.setText("");
+            }
+            if(validaciones.contains("!zone list ")){
+                zonelist();
+                tf_valid.setText("");
+            }
+            if(validaciones.contains("!sell  ")){
+                sellitem();
+                tf_valid.setText("");
+            }
+            if(validaciones.contains("!item list")){
+                itemlist();
+                tf_valid.setText("");
+            }
+            if(validaciones.contains("!buy ")){
+                buyitem();
+                tf_valid.setText("");
+            }
+            if(validaciones.contains("!bag ")){
+                bag();
+                tf_valid.setText("");
+            }
+            if(validaciones.contains("!d ")){
+                d();
+                tf_valid.setText("");
+            }
+            if(validaciones.contains("!w ")){
+                w();
+                tf_valid.setText("");
+            }
+            if(validaciones.contains("!b ")){
+                b();
+                tf_valid.setText("");
+            }
+            
             
             
         }
@@ -807,13 +865,15 @@ public class MainLab8 extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
    
     ArrayList<Mascotas> mascotas =  new ArrayList();
-    ArrayList items = new ArrayList();
-    ArrayList personalizado = new ArrayList();
+    ArrayList<Items> items = new ArrayList();
+    ArrayList<Zona> zonas = new ArrayList();
+    ArrayList<Object> personalizado = new ArrayList();
+    ArrayList<Object> bolsa = new ArrayList();
     
     administrarVida AV;
     
     public void petlist(){
-        ta_comandos.setText("");
+       
         ta_comandos.append("----------------------------+" + "\n");
         ta_comandos.append("-------Mascotas-------------" + "\n");
         for (Mascotas mascot : mascotas) {
@@ -822,5 +882,143 @@ public class MainLab8 extends javax.swing.JFrame {
         }
         ta_comandos.append("----------------------------" + "\n");        
     }
+    
+    public void petactive(){
+        AV.setAvanzar(true);
+    }
+    
+    public void petfeed(){
+       
+        ta_comandos.append("----------------------------+" + "\n");
+        ta_comandos.append("-------Alimentos----------" + "\n");
+        for (Items alimen : items) {
+            ta_comandos.append(alimen.getAlimento() + "\n");
+            
+        }
+        ta_comandos.append("----------------------------" + "\n");
+        tf_valid.setText("");
+        int comer = Integer.parseInt(tf_valid.getText());
+        
+        int puntos = 500;
+        
+        int vida = Integer.parseInt(ff_vida.getText()) + puntos;
+    }
+   public void adopt(){
+       String nombre;
+       int delay, costo, vida;
+       Color color;
+
+        nombre = tf_nombreMAS.getText();
+        delay = Integer.parseInt(ff_delay.getText());
+        costo = Integer.parseInt(ff_costo.getText());
+        vida = Integer.parseInt(ff_vida.getText());
+        color = jb_color.getBackground();
+        
+       Mascotas m = new Mascotas(nombre, vida, delay, costo, color);
+        
+         Object[] newrow = {
+            m.getNombreMAS(),
+            m.getDelay(),
+            m.getCosto(),
+            m.getColor(),
+            m.getVida()
+                 
+        };
+        DefaultTableModel modelo
+                = (DefaultTableModel) tabla1.getModel();
+        modelo.addRow(newrow);
+        tabla1.setModel(modelo);
+
+   }
+   
+   public void mine(){
+       
+   }
+   public void fish(){
+       
+   }
+   public void zonelist(){
+       
+        ta_comandos.append("----------------------------+" + "\n");
+        ta_comandos.append("-------Zonas----------" + "\n");
+        for (Zona zone : zonas) {
+            ta_comandos.append(zone.getNombre() + "\n");
+            
+        }
+        ta_comandos.append("----------------------------" + "\n");
+   }
+   
+   public void sellitem(){
+       tf_valid.setText("");
+       String cosa =tf_valid.getText();
+       
+       if(items.contains(cosa)){
+           bolsa.remove(cosa);
+       }
+       dinero = dinero + it.getPrecio();
+       
+   }
+   
+   public void itemlist(){
+       ta_comandos.append("----------------------------+" + "\n");
+       ta_comandos.append("-------Items----------" + "\n");
+       for (Items ite : items) {
+           ta_comandos.append(items.toString() + "\n");
+       }
+       ta_comandos.append("----------------------------" + "\n");
+       
+   }
+   public void buyitem(){
+       tf_valid.setText("");
+       String cosa =tf_valid.getText();
+       
+       if(items.contains(cosa)){
+           bolsa.add(cosa);
+       }
+       dinero = dinero - it.getPrecio();
+       
+   }
+   
+   public void bag(){
+       ta_comandos.append("----------------------------+" + "\n");
+       ta_comandos.append("-------Bag----------" + "\n");
+       
+           ta_comandos.append(bolsa + "\n");
+       
+       ta_comandos.append("----------------------------" + "\n");
+   }
+   
+   public void d(){
+       tf_valid.setText("");
+       int cuanto = Integer.parseInt(tf_valid.getText());
+       
+       banco = banco + cuanto;
+       dinero =  dinero - cuanto;
+   }
+   
+   public void w(){
+       tf_valid.setText("");
+       int cuanto = Integer.parseInt(tf_valid.getText());
+       
+       dinero = dinero+cuanto;
+       banco = banco - cuanto;
+       
+   }
+   public void b(){
+       ta_comandos.append("----------------------------+" + "\n");
+       ta_comandos.append("-------Dinero----------" + "\n");
+      
+           ta_comandos.append("Dinero: "+ dinero + "\n");
+           ta_comandos.append("Banco: "+ banco + "\n");
+
+       
+       ta_comandos.append("----------------------------" + "\n");
+       
+   }
+   
+   public void clear(){
+       ta_comandos.setText("");
+   }
+       
     
 }
