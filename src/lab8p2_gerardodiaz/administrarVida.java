@@ -43,8 +43,11 @@ public class administrarVida {
                 if (Integer.parseInt(delay.getText()) > 0) {
                     d = Integer.parseInt(delay.getText());
                 }
-                progBar_Vl.setValue(Integer.parseInt(vida.getText())-(Integer.parseInt(delay.getText()))
+                progBar_Vl.setValue(Integer.parseInt(vida.getText())-(Integer.parseInt(delay.getText()))                       
                 );
+                
+                int actual = Integer.parseInt(vida.getText()) - Integer.parseInt(delay.getText());
+                vida.setText(Integer.toString(actual));
             }//FIN IF
             try {
                 Thread.sleep(300);
