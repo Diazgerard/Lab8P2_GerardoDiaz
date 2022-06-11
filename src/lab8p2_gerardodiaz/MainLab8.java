@@ -7,6 +7,7 @@ package lab8p2_gerardodiaz;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 
@@ -66,14 +67,13 @@ public class MainLab8 extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         ff_probATA = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        ta_agregarITEM = new javax.swing.JTextArea();
-        jb_agregarITEM = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        ta_items = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
         jb_crearZONA = new javax.swing.JButton();
         tf_nombreITEM = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jl_personas = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,7 +85,7 @@ public class MainLab8 extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 554, Short.MAX_VALUE)
+            .addGap(0, 598, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Mascota", jPanel1);
@@ -98,7 +98,7 @@ public class MainLab8 extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 554, Short.MAX_VALUE)
+            .addGap(0, 598, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Comandos", jPanel3);
@@ -147,6 +147,9 @@ public class MainLab8 extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jb_crearITEMMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jb_crearITEMMouseEntered(evt);
+            }
         });
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -169,7 +172,11 @@ public class MainLab8 extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Probabilidad de Obtencion");
 
-        ff_probabilidadOBT.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        try {
+            ff_probabilidadOBT.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         ff_probabilidadOBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ff_probabilidadOBTActionPerformed(evt);
@@ -211,15 +218,10 @@ public class MainLab8 extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Agregar Item");
 
-        ta_agregarITEM.setColumns(20);
-        ta_agregarITEM.setRows(5);
-        jScrollPane1.setViewportView(ta_agregarITEM);
-
-        jb_agregarITEM.setText("Agregar Item");
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        ta_items.setBackground(new java.awt.Color(153, 153, 153));
+        ta_items.setColumns(20);
+        ta_items.setRows(5);
+        jScrollPane2.setViewportView(ta_items);
 
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Items");
@@ -235,6 +237,22 @@ public class MainLab8 extends javax.swing.JFrame {
                 jb_crearZONAMouseClicked(evt);
             }
         });
+
+        jl_personas.setBackground(new java.awt.Color(153, 153, 153));
+        jl_personas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jl_personas.setForeground(new java.awt.Color(153, 255, 51));
+        jl_personas.setModel(new DefaultListModel());
+        jl_personas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_personasMouseClicked(evt);
+            }
+        });
+        jl_personas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jl_personasKeyPressed(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jl_personas);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -289,62 +307,19 @@ public class MainLab8 extends javax.swing.JFrame {
                             .addComponent(jb_crearZONA, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(58, 58, 58)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jb_agregarITEM, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 1, Short.MAX_VALUE))
+                        .addGap(0, 20, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(186, 186, 186))))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ff_vida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(ff_delay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ff_costo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(ff_probabilidadOBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel10)
-                                .addGap(18, 18, 18)
-                                .addComponent(ff_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jb_color, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jb_crearMAS, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(340, 340, 340)
-                        .addComponent(jb_crearITEM, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16)
-                            .addComponent(jb_agregarITEM))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(202, 202, 202))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -382,10 +357,52 @@ public class MainLab8 extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel8)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ff_probATA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jb_crearZONA)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(ff_probATA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jb_crearZONA))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(ff_probabilidadOBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(98, 98, 98)
+                                .addComponent(jb_crearITEM, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel15)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel16)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(128, 128, 128)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ff_vida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(ff_delay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(ff_costo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(40, 40, 40)
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ff_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(24, 24, 24)
+                                .addComponent(jb_color, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jb_crearMAS, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Administracion", jPanel2);
@@ -496,7 +513,18 @@ public class MainLab8 extends javax.swing.JFrame {
         
         Items its = new Items(nombre, alimento, prob, precio);
         items.add(its);
+        DefaultListModel modelo
+                = (DefaultListModel) jl_personas.getModel();
+
+        modelo.addElement(tf_nombreITEM.getText()
+        );
         
+        administrarItems ap = new administrarItems("./Items.cbm");
+        ap.cargarArchivo();  
+        ap.escribirArchivo();
+        
+        JOptionPane.showMessageDialog(this,
+                "Item guardada exitosamente");
         tf_nombreITEM.setText("");
         rb_si.setSelected(false);
         rb_no.setSelected(false);
@@ -527,16 +555,50 @@ public class MainLab8 extends javax.swing.JFrame {
         tf_nombreZONA.setText("");
         ff_probDERRUMBE.setText("");
         ff_probATA.setText("");
-        
-        
-        
-      
-        
+     
     }//GEN-LAST:event_jb_crearZONAMouseClicked
 
     private void jb_crearZONAMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearZONAMouseDragged
         // TODO add your handling code here:
     }//GEN-LAST:event_jb_crearZONAMouseDragged
+
+    private void jb_crearITEMMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearITEMMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_crearITEMMouseEntered
+
+    private void jl_personasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_personasMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jl_personasMouseClicked
+
+    private void jl_personasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jl_personasKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == evt.VK_DELETE) {
+            if (jl_personas.getSelectedIndex() >= 0) {
+                DefaultListModel modelo
+                = (DefaultListModel) jl_personas.getModel();
+                modelo.remove(jl_personas.getSelectedIndex());
+                jl_personas.setModel(modelo);
+                JOptionPane.showMessageDialog(this,
+                    "Eliminado exitosamente");
+
+            }
+        }
+        
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            if (jl_personas.getSelectedIndex() >= 0) {
+                DefaultListModel modelo
+                = (DefaultListModel) jl_personas.getModel();
+                ta_items.append(modelo.toString());
+                
+                JOptionPane.showMessageDialog(this,
+                    "Copiado exitosamente");
+
+            }
+        }
+        
+        
+    }//GEN-LAST:event_jl_personasKeyPressed
 
     /**
      * @param args the command line arguments
@@ -601,18 +663,17 @@ public class MainLab8 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JButton jb_agregarITEM;
     private javax.swing.JButton jb_color;
     private javax.swing.JButton jb_crearITEM;
     private javax.swing.JButton jb_crearMAS;
     private javax.swing.JButton jb_crearZONA;
+    private javax.swing.JList jl_personas;
     private javax.swing.JRadioButton rb_no;
     private javax.swing.JRadioButton rb_si;
-    private javax.swing.JTextArea ta_agregarITEM;
+    private javax.swing.JTextArea ta_items;
     private javax.swing.JTextField tf_nombreITEM;
     private javax.swing.JTextField tf_nombreMAS;
     private javax.swing.JTextField tf_nombreZONA;

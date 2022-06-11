@@ -19,6 +19,10 @@ public class Items {
 
     public Items() {
     }
+    
+     public Items(String nombre) {
+         this.nombre = nombre;
+    }
 
     public Items(String nombre, String alimento, int probOBT, int precio) {
         
@@ -27,9 +31,6 @@ public class Items {
         this.probOBT = probOBT;
         this.precio = precio;
     }
-
-    
-    
 
     public String getNombre() {
         return nombre;
@@ -65,7 +66,7 @@ public class Items {
 
     @Override
     public String toString() {
-        return "Items{" + ", nombre=" + nombre + ", alimento=" + alimento + ", probOBT=" + probOBT + ", precio=" + precio + '}';
+        return nombre;
     }
     
     
