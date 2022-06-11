@@ -26,11 +26,11 @@ public class administrarItems {
         archivo = new File(path);
     }
 
-    public ArrayList<Items> getListaPersonas() {
+    public ArrayList<Items> getListaItems() {
         return listaItems;
     }
 
-    public void setListaPersonas(ArrayList<Items> listaItems) {
+    public void setListaItems(ArrayList<Items> listaItems) {
         this.listaItems = listaItems;
     }
 
@@ -46,6 +46,9 @@ public class administrarItems {
     public String toString() {
         return "listaPersonas=" + listaItems;
     //extra mutador
+    }
+     public void setItems(Items u) {
+        this.listaItems.add(u);
     }
 
     public void cargarArchivo() {

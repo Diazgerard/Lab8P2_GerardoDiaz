@@ -16,12 +16,13 @@ import javax.swing.JOptionPane;
  * @author gerar
  */
 public class MainLab8 extends javax.swing.JFrame {
-
+    Items it = new Items();
     /**
      * Creates new form MainLab8
      */
     public MainLab8() {
         initComponents();
+        
     }
 
     /**
@@ -36,7 +37,8 @@ public class MainLab8 extends javax.swing.JFrame {
         BT_Alimento = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabla1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -74,34 +76,58 @@ public class MainLab8 extends javax.swing.JFrame {
         tf_nombreITEM = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         jl_personas = new javax.swing.JList();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ta_comandos = new javax.swing.JTextArea();
+        tf_valid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tabla1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Delay", "Costo", "Color"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tabla1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1015, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 598, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(310, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Mascota", jPanel1);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1015, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 598, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Comandos", jPanel3);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -254,6 +280,10 @@ public class MainLab8 extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jl_personas);
 
+        jLabel17.setText("Key Pressesed \"Delete\" para eliminar");
+
+        jLabel18.setText("Key Pressesed \"enter\" para agregar al Items");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -313,7 +343,12 @@ public class MainLab8 extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -369,7 +404,13 @@ public class MainLab8 extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel15)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel18)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -406,6 +447,43 @@ public class MainLab8 extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Administracion", jPanel2);
+
+        ta_comandos.setColumns(20);
+        ta_comandos.setRows(5);
+        jScrollPane1.setViewportView(ta_comandos);
+
+        tf_valid.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        tf_valid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tf_validKeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(tf_valid, javax.swing.GroupLayout.PREFERRED_SIZE, 929, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 44, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tf_valid, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Comandos", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -483,7 +561,7 @@ public class MainLab8 extends javax.swing.JFrame {
 
     private void jb_crearITEMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearITEMMouseClicked
         // TODO add your handling code here:
-        Items it = new Items();
+        
         String nombre, alimento;
         int prob, precio;
         
@@ -516,13 +594,17 @@ public class MainLab8 extends javax.swing.JFrame {
         DefaultListModel modelo
                 = (DefaultListModel) jl_personas.getModel();
 
-        modelo.addElement(tf_nombreITEM.getText()
-        );
+        modelo.addElement(new Items(tf_nombreITEM.getText(), 
+                tf_nombreITEM.getText(),
+                Integer.parseInt(ff_probabilidadOBT.getText()), 
+                Integer.parseInt(ff_Precio.getText())));
         
         administrarItems ap = new administrarItems("./Items.cbm");
         ap.cargarArchivo();  
         ap.escribirArchivo();
-        
+        administrarItems ap1= new administrarItems("./Items1.txt");
+        ap1.cargarArchivo();  
+        ap1.escribirArchivo();
         JOptionPane.showMessageDialog(this,
                 "Item guardada exitosamente");
         tf_nombreITEM.setText("");
@@ -537,7 +619,7 @@ public class MainLab8 extends javax.swing.JFrame {
     private void jb_crearZONAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearZONAMouseClicked
         // TODO add your handling code here:+
         Zona zone = new Zona();
-        String nombre, renumeracion;
+        String nombre, renumeracion, personal;
         int probDER, probMEG;
         
         nombre = tf_nombreZONA.getText();
@@ -548,6 +630,8 @@ public class MainLab8 extends javax.swing.JFrame {
         zone.setProbDERRUMBE(probDER);
         probMEG= Integer.parseInt(ff_probATA.getText());
         zone.setProbMEGA(probMEG);
+        personal = ta_items.getText();
+        personalizado.add(personal);
         
         Zona zona =  new Zona(nombre,renumeracion, probDER, probMEG);
         
@@ -555,6 +639,7 @@ public class MainLab8 extends javax.swing.JFrame {
         tf_nombreZONA.setText("");
         ff_probDERRUMBE.setText("");
         ff_probATA.setText("");
+        ta_items.setText("");
      
     }//GEN-LAST:event_jb_crearZONAMouseClicked
 
@@ -584,21 +669,41 @@ public class MainLab8 extends javax.swing.JFrame {
 
             }
         }
-        
+        ta_items.setText("");
         if (evt.getKeyCode() == evt.VK_ENTER) {
             if (jl_personas.getSelectedIndex() >= 0) {
                 DefaultListModel modelo
-                = (DefaultListModel) jl_personas.getModel();
-                ta_items.append(modelo.toString());
-                
+                        = (DefaultListModel) jl_personas.getModel();
+                administrarItems ap1 = new administrarItems("./Items1.txt");
+                ap1.cargarArchivo();
+                for (Items t : ap1.getListaItems() ) {
+                    ta_items.append(t.toString());
+
+                }
+
                 JOptionPane.showMessageDialog(this,
-                    "Copiado exitosamente");
+                        "Copiado exitosamente");
 
             }
         }
         
         
     }//GEN-LAST:event_jl_personasKeyPressed
+
+    private void tf_validKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_validKeyPressed
+        // TODO add your handling code here:
+        String validaciones = tf_valid.getText();
+        
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            
+            if(validaciones.contains("!pet list")){
+                petlist();
+            }
+            
+            
+        }
+        
+    }//GEN-LAST:event_tf_validKeyPressed
 
     /**
      * @param args the command line arguments
@@ -652,6 +757,8 @@ public class MainLab8 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -663,7 +770,9 @@ public class MainLab8 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton jb_color;
@@ -673,13 +782,28 @@ public class MainLab8 extends javax.swing.JFrame {
     private javax.swing.JList jl_personas;
     private javax.swing.JRadioButton rb_no;
     private javax.swing.JRadioButton rb_si;
+    private javax.swing.JTextArea ta_comandos;
     private javax.swing.JTextArea ta_items;
+    private javax.swing.JTable tabla1;
     private javax.swing.JTextField tf_nombreITEM;
     private javax.swing.JTextField tf_nombreMAS;
     private javax.swing.JTextField tf_nombreZONA;
+    private javax.swing.JTextField tf_valid;
     // End of variables declaration//GEN-END:variables
    
-    ArrayList mascotas =  new ArrayList();
+    ArrayList<Mascotas> mascotas =  new ArrayList();
     ArrayList items = new ArrayList();
-
+    ArrayList personalizado = new ArrayList();
+    
+    public void petlist(){
+        ta_comandos.setText("");
+        ta_comandos.append("----------------------------+" + "\n");
+        ta_comandos.append("-------Mascotas-------------" + "\n");
+        for (Mascotas mascot : mascotas) {
+            ta_comandos.append(mascot.getNombreMAS() + "\n");
+            
+        }
+        ta_comandos.append("----------------------------" + "\n");
+        
+    }
 }

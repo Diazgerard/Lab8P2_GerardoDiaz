@@ -20,10 +20,6 @@ public class Items {
     public Items() {
     }
     
-     public Items(String nombre) {
-         this.nombre = nombre;
-    }
-
     public Items(String nombre, String alimento, int probOBT, int precio) {
         
         this.nombre = nombre;
