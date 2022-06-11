@@ -22,6 +22,7 @@ public class MainLab8 extends javax.swing.JFrame {
      */
     public MainLab8() {
         initComponents();
+        AV = new administrarVida(pg_c, ff_vida, ff_delay);
         
     }
 
@@ -39,6 +40,7 @@ public class MainLab8 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabla1 = new javax.swing.JTable();
+        pg_c = new javax.swing.JProgressBar();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -90,14 +92,14 @@ public class MainLab8 extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Delay", "Costo", "Color"
+                "Nombre", "Delay", "Costo", "Color", "Puntos De Vida"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -110,21 +112,29 @@ public class MainLab8 extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tabla1);
 
+        pg_c.setMaximum(50);
+        pg_c.setValue(50);
+        pg_c.setStringPainted(true);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
+                    .addComponent(pg_c, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(pg_c, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(310, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Mascota", jPanel1);
@@ -199,10 +209,11 @@ public class MainLab8 extends javax.swing.JFrame {
         jLabel9.setText("Probabilidad de Obtencion");
 
         try {
-            ff_probabilidadOBT.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+            ff_probabilidadOBT.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ff_probabilidadOBT.setDoubleBuffered(true);
         ff_probabilidadOBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ff_probabilidadOBTActionPerformed(evt);
@@ -231,7 +242,7 @@ public class MainLab8 extends javax.swing.JFrame {
         jLabel13.setText("Probabilidad de Derrumbe");
 
         try {
-            ff_probDERRUMBE.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+            ff_probDERRUMBE.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -239,7 +250,11 @@ public class MainLab8 extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Probalidad de Ataque");
 
-        ff_probATA.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        try {
+            ff_probATA.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Agregar Item");
@@ -452,7 +467,8 @@ public class MainLab8 extends javax.swing.JFrame {
         ta_comandos.setRows(5);
         jScrollPane1.setViewportView(ta_comandos);
 
-        tf_valid.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        tf_valid.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tf_valid.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tf_valid.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tf_validKeyPressed(evt);
@@ -466,11 +482,8 @@ public class MainLab8 extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(tf_valid, javax.swing.GroupLayout.PREFERRED_SIZE, 929, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 44, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE)
+                    .addComponent(tf_valid))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -479,8 +492,8 @@ public class MainLab8 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tf_valid, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addComponent(tf_valid, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Comandos", jPanel3);
@@ -570,10 +583,10 @@ public class MainLab8 extends javax.swing.JFrame {
         
         if(rb_si.isSelected()){
             alimento = "si";
-            it.setAlimento(alimento);
+            it.setAlimento(nombre);
         }else{
             alimento = "no";
-            it.setAlimento(alimento);
+            
         }
         
         if(rb_no.isSelected()){
@@ -581,7 +594,7 @@ public class MainLab8 extends javax.swing.JFrame {
             it.setAlimento(alimento);
         }else{
             alimento = "si";
-            it.setAlimento(alimento);
+            it.setAlimento(nombre);
         }
         
         prob = Integer.parseInt(ff_probabilidadOBT.getText());
@@ -698,6 +711,7 @@ public class MainLab8 extends javax.swing.JFrame {
             
             if(validaciones.contains("!pet list")){
                 petlist();
+                tf_valid.setText("");
             }
             
             
@@ -780,6 +794,7 @@ public class MainLab8 extends javax.swing.JFrame {
     private javax.swing.JButton jb_crearMAS;
     private javax.swing.JButton jb_crearZONA;
     private javax.swing.JList jl_personas;
+    public javax.swing.JProgressBar pg_c;
     private javax.swing.JRadioButton rb_no;
     private javax.swing.JRadioButton rb_si;
     private javax.swing.JTextArea ta_comandos;
@@ -795,6 +810,8 @@ public class MainLab8 extends javax.swing.JFrame {
     ArrayList items = new ArrayList();
     ArrayList personalizado = new ArrayList();
     
+    administrarVida AV;
+    
     public void petlist(){
         ta_comandos.setText("");
         ta_comandos.append("----------------------------+" + "\n");
@@ -803,7 +820,7 @@ public class MainLab8 extends javax.swing.JFrame {
             ta_comandos.append(mascot.getNombreMAS() + "\n");
             
         }
-        ta_comandos.append("----------------------------" + "\n");
-        
+        ta_comandos.append("----------------------------" + "\n");        
     }
+    
 }
